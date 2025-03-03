@@ -21,3 +21,5 @@ themeToggleBtn.addEventListener('click', function() {
     // Save preference to localStorage
     localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
 });
+
+  
