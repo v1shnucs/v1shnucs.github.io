@@ -227,7 +227,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
+            z-index: 2000; /* Increased z-index */
             padding: 1rem 0;
             background: var(--glass);
             backdrop-filter: blur(20px) saturate(180%);
@@ -255,6 +255,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+            position: relative;
+            width: 100%;
         }
 
         .logo {
@@ -266,40 +268,20 @@
             -webkit-text-fill-color: transparent;
             position: relative;
             transition: var(--transition);
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--gradient-1);
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 2px;
-        }
-
-        .logo:hover::after {
-            width: 100%;
+            flex-shrink: 0;
+            z-index: 2002; /* Increased z-index */
         }
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            z-index: 1001;
             display: flex;
             align-items: center;
-            height: 80px;
-            padding-right: 2rem;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1rem;
+            gap: 0.8rem;
             align-items: center;
             margin: 0;
             padding: 0;
@@ -309,8 +291,8 @@
             color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.8rem;
             border-radius: 8px;
             transition: all 0.2s ease;
             white-space: nowrap;
@@ -321,28 +303,21 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Primary Button Style */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.8rem 1.8rem;
-            background: var(--gradient-1);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 1rem;
-            border: 1px solid transparent;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        /* Special styling for resume link */
+        .resume-link {
+            background: var(--gradient-1) !important;
+            color: var(--text-primary) !important;
+            border-radius: 20px !important;
+            padding: 0.6rem 1.2rem !important;
+            font-weight: 600 !important;
+            box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+            transition: var(--transition) !important;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
-            background: var(--primary-dark);
+        .resume-link:hover {
+            transform: translateY(-2px) scale(1.02) !important;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4) !important;
+            background: var(--primary-dark) !important;
         }
 
         /* Mobile Navigation */
@@ -356,7 +331,7 @@
             cursor: pointer;
             font-size: 1.2rem;
             transition: all 0.2s ease;
-            z-index: 1002;
+            z-index: 2002; /* Increased z-index */
         }
 
         .mobile-nav-toggle:hover {
@@ -1047,7 +1022,7 @@
             width: 0%;
             height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            z-index: 1000;
+            z-index: 2001; /* Increased z-index */
             transition: width 0.1s ease;
             box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
         }
@@ -1084,25 +1059,32 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             nav ul {
-                gap: 0.3rem;
+                gap: 0.5rem;
             }
             
             nav a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .logo {
+                font-size: 1.5rem;
             }
             
-            .hero-image {
-                width: 200px;
-                height: 200px;
+            nav ul {
+                gap: 0.4rem;
             }
             
-            .cards {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            nav a {
+                padding: 0.4rem 0.5rem;
+                font-size: 0.8rem;
             }
+
+            /* ...existing code... */
         }
 
         @media (max-width: 768px) {
@@ -1111,16 +1093,21 @@
             }
             
             nav {
+                display: none;
+            }
+            
+            .mobile-nav {
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: auto;
                 padding: 0;
-                z-index: 1001;
+                z-index: 2001;
+                display: block; /* Ensure mobile nav is visible */
             }
             
-            nav ul {
+            .mobile-nav ul {
                 position: fixed;
                 top: 80px;
                 left: 0;
@@ -1139,23 +1126,26 @@
                 box-shadow: 
                     0 8px 32px rgba(0, 0, 0, 0.25),
                     0 0 60px rgba(99, 102, 241, 0.15);
-                z-index: 1000;
+                z-index: 2000;
                 max-height: calc(100vh - 80px);
                 overflow-y: auto;
+                list-style: none; /* Ensure no list styling */
+                margin: 0; /* Reset default margin */
+                display: flex; /* Ensure flex display */
             }
             
-            nav ul.active {
+            .mobile-nav ul.active {
                 transform: translateY(0);
                 opacity: 1;
                 visibility: visible;
             }
             
-            nav ul li {
+            .mobile-nav ul li {
                 width: 100%;
                 text-align: center;
             }
             
-            nav a {
+            .mobile-nav a {
                 display: block;
                 width: 100%;
                 padding: 1rem;
@@ -1166,16 +1156,30 @@
                 margin: 0.25rem 0;
                 transition: all 0.3s ease;
                 color: var(--text-primary);
+                text-decoration: none; /* Ensure no underline */
             }
-            
-            nav a:hover {
+
+            .mobile-nav a:hover {
                 background: rgba(255, 255, 255, 0.15);
                 transform: translateY(-2px);
                 box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
             }
+
+            /* Mobile resume link styling */
+            .mobile-nav .resume-link {
+                background: var(--gradient-1) !important;
+                color: var(--text-primary) !important;
+                font-weight: 600 !important;
+                box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+            }
+
+            .mobile-nav .resume-link:hover {
+                background: var(--primary-dark) !important;
+                box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4) !important;
+            }
             
             /* Light theme mobile nav styles */
-            body.light-mode nav ul {
+            body.light-mode .mobile-nav ul {
                 background: var(--glass);
                 border-top: 1px solid var(--glass-border);
                 border-bottom: 1px solid var(--glass-border);
@@ -1184,12 +1188,12 @@
                     0 0 60px rgba(99, 102, 241, 0.08);
             }
 
-            body.light-mode nav a {
+            body.light-mode .mobile-nav a {
                 background: rgba(0, 0, 0, 0.05);
                 border: 1px solid rgba(0, 0, 0, 0.1);
             }
 
-            body.light-mode nav a:hover {
+            body.light-mode .mobile-nav a:hover {
                 background: rgba(0, 0, 0, 0.1);
                 box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
             }
@@ -1197,41 +1201,24 @@
 
         @media (max-width: 480px) {
             .header-content {
-                padding: 0 0.5rem;
+                padding: 0 1rem;
             }
             
             .logo {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
             
-            main {
-                padding: 5rem 0.5rem 2rem;
+            .mobile-nav-toggle {
+                right: 1rem;
             }
-            
-            .hero-image {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .hero-description {
-                font-size: 0.95rem;
-                max-width: 320px;
-            }
-            
-            .card, .project-card {
-                padding: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
+
+            /* ...existing code... */
+        }
+
+        /* Add this to ensure mobile nav is hidden on desktop */
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none !important;
             }
         }
     </style>
@@ -1262,14 +1249,29 @@
     <header id="header">
         <div class="header-content">
             <div class="logo">Vishnu Reshamwala</div>
+            
+            <!-- Desktop Navigation -->
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="Vishnu_Reshamwala_resume.pdf" target="_blank" class="resume-link">Resume</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Navigation Toggle -->
             <button class="mobile-nav-toggle" id="mobileNavToggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- Navigation moved outside header -->
-    <nav>
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
         <ul id="navMenu">
             <li><a href="#about">About</a></li>
             <li><a href="#education">Education</a></li>
@@ -1277,7 +1279,7 @@
             <li><a href="#experience">Experience</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="Vishnu_Reshamwala_resume.pdf" target="_blank">Resume</a></li>
+            <li><a href="Vishnu_Reshamwala_resume.pdf" target="_blank" class="resume-link">Resume</a></li>
         </ul>
     </nav>
 
@@ -1348,7 +1350,7 @@
                         Developing an advanced human-robot interaction system using Sawyer robot platform that combines OpenAI's Vision model for object detection and natural language processing for intuitive control.
                     </p>
                     <div class="project-links">
-                        <a href="https://github.com/v1shnucs/SawyerSense" target="_blank" class="project-link"></a>
+                        <a href="https://github.com/v1shnucs/SawyerSense" target="_blank" class="project-link">
                             <i class="fab fa-github"></i> View Project
                         </a>
                     </div>
@@ -1812,55 +1814,15 @@
             // Enhanced Theme Persistence with Smooth Transitions
             function initThemeSystem() {
                 console.log('Initializing theme system...');
-                // const themeToggle = document.getElementById('themeToggle');
-                
-                // if (!themeToggle) {
-                //     console.error('Theme toggle button not found!');
-                //     return;
-                // }
-                
-                // const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
-                // console.log('Saved theme:', savedTheme);
-                
                 // Set initial theme (dark is default)
-                // if (savedTheme === 'light') {
-                //     document.body.classList.add('light-mode');
-                //     themeToggle.textContent = '🌙';
-                //     console.log('Applied light theme');
-                // } else {
                 document.body.classList.remove('light-mode');
-                //     themeToggle.textContent = '☀️';
                 console.log('Applied dark theme by default');
-                // }
-                
-                // Theme toggle functionality
-                // themeToggle.addEventListener('click', () => {
-                //     console.log('Theme toggle clicked');
-                //     document.body.classList.toggle('light-mode');
-                //     const isLight = document.body.classList.contains('light-mode');
-                    
-                //     console.log('Is light mode:', isLight);
-                    
-                //     // Update toggle icon
-                //     themeToggle.textContent = isLight ? '🌙' : '☀️';
-                    
-                //     // Save preference
-                //     localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
-                //     console.log('Saved theme preference:', isLight ? 'light' : 'dark');
-                    
-                //     // Add smooth transition
-                //     document.body.style.transition = 'all 0.3s ease';
-                //     setTimeout(() => {
-                //         document.body.style.transition = '';
-                //     }, 300);
-                // });
-                
                 console.log('Theme system initialized successfully - Dark theme forced');
             }
 
             // Parallax Effect for Background Elements
             function initParallaxEffects() {
-                const parallaxElements = document.querySelectorAll('.bg-mesh'); // Removed .hero-image
+                const parallaxElements = document.querySelectorAll('.bg-mesh');
                 
                 function updateParallax() {
                     const scrolled = window.pageYOffset;
@@ -1881,37 +1843,10 @@
                         parallaxTimeout = null;
                     }, 16);
                 });
-            }
-
-            // Initialize all enhanced effects
-            initMagneticEffects();
-            initAdvancedCardAnimations();
-            initThemeSystem();
-            initParallaxEffects();
-
+            }            // Initialize all enhanced effects            initMagneticEffects();            initAdvancedCardAnimations();            initThemeSystem();            initParallaxEffects();    
             // Debug: Add a test for theme toggle
             console.log('All systems initialized');
-            
-            // Force test the theme toggle after 2 seconds
-            // setTimeout(() => {
-            //     console.log('Testing theme toggle...');
-            //     const body = document.body;
-            //     const currentClasses = body.className;
-            //     console.log('Current body classes:', currentClasses);
-                
-            //     // Try to manually toggle
-            //     body.classList.add('light-mode');
-            //     console.log('Added light-mode class');
-            //     console.log('Body classes after adding light-mode:', body.className);
-                
-            //     setTimeout(() => {
-            //         body.classList.remove('light-mode');
-            //         console.log('Removed light-mode class');
-            //         console.log('Body classes after removing light-mode:', body.className);
-            //     }, 3000);
-            // }, 2000);
         });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
