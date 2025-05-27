@@ -1038,35 +1038,6 @@
             50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.2); }
         }
 
-        /* Scroll Progress Indicator */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            z-index: 2001; /* Increased z-index */
-            transition: width 0.1s ease;
-            box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
-        }
-
-        .scroll-progress::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 20px;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
-            animation: progressShine 2s ease-in-out infinite;
-        }
-
-        @keyframes progressShine {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
         /* Performance Monitor (Development) */
         .fps-counter {
             position: fixed;
@@ -1257,9 +1228,6 @@
         <div class="loading-logo"></div>
     </div>
 
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
     <!-- Grid Overlay -->
     <div class="grid-overlay"></div>
 
@@ -1399,14 +1367,17 @@
                 </div>
 
                 <div class="glass-card project-card">
-                    <h3>GPT-2 Reproduction and Optimization from Scratch</h3>
+                    <h3>Bink: AI Conversational Shopping Assistant</h3>
                     <div class="tech-stack">
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">Mixed Precision</span>
-                        <span class="tech-tag">DDP</span>
-                        <span class="tech-tag">Flash Attention</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Gemini API</span>
+                        <span class="tech-tag">SerpApi</span>
                     </div>
-                    <p class="project-description">Reproduced the GPT-2 (124M) neural network architecture and training process, based on GPT-2 paper.</p>
+                    <p class="project-description">
+                        Developed an AI-powered conversational shopping assistant enabling users to find products via natural language and image-based queries. Integrated Google Gemini for multimodal understanding and intelligent product recommendations, utilizing SerpApi for real-time product searching from Google Shopping.
+                    </p>
                 </div>
 
                 <div class="glass-card project-card">
@@ -1628,15 +1599,6 @@
                     } else {
                         header.classList.remove('scrolled');
                     }
-                }
-
-                // Scroll Progress with throttling
-                const scrollProgress = document.getElementById('scrollProgress');
-                if (scrollProgress) {
-                    const scrollTop = document.documentElement.scrollTop;
-                    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                    const progress = (scrollTop / scrollHeight) * 100;
-                    scrollProgress.style.width = progress + '%';
                 }
 
                 lastScrollY = currentScrollY;
