@@ -162,23 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add typing effect to subtitle
-    const subtitle = document.querySelector('.hero .subtitle');
-    if (subtitle) {
-        const text = subtitle.textContent;
-        subtitle.textContent = '';
-        subtitle.style.opacity = '1';
-        
-        let i = 0;
-        const typeEffect = setInterval(() => {
-            if (i < text.length) {
-                subtitle.textContent += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(typeEffect);
-            }
-        }, 100);
-    }
+    // Typing effect is now handled by initEnhancedTypingEffect() below
 
     // Custom Cursor
     const cursor = document.getElementById('cursor');
@@ -295,12 +279,166 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Enhanced skill tag animations
+    function initSkillTagAnimations() {
+        const skillCategories = document.querySelectorAll('.skill-category');
+        
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillTags = entry.target.querySelectorAll('.skill-tag');
+                    skillTags.forEach((tag, index) => {
+                        setTimeout(() => {
+                            tag.style.opacity = '1';
+                            tag.style.transform = 'translateY(0)';
+                        }, index * 80);
+                    });
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        skillCategories.forEach(category => {
+            const skillTags = category.querySelectorAll('.skill-tag');
+            skillTags.forEach(tag => {
+                tag.style.opacity = '0';
+                tag.style.transform = 'translateY(20px)';
+                tag.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            skillObserver.observe(category);
+        });
+    }
+
+    // Enhanced typing effect with cursor
+    function initEnhancedTypingEffect() {
+        const subtitle = document.querySelector('.hero .subtitle');
+        if (subtitle) {
+            const text = subtitle.textContent;
+            subtitle.textContent = '';
+            subtitle.style.opacity = '1';
+            subtitle.style.borderRight = '2px solid var(--primary)';
+            subtitle.style.paddingRight = '2px';
+            
+            let i = 0;
+            const typeEffect = setInterval(() => {
+                if (i < text.length) {
+                    subtitle.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeEffect);
+                    setTimeout(() => {
+                        subtitle.style.borderRight = 'none';
+                    }, 1000);
+                }
+            }, 100);
+        }
+    }
+
+    // Enhanced project card interactions
+    function initProjectCardEnhancements() {
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) rotateX(5deg) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    }
+
+    // Social link tooltips with enhanced animations
+    function initSocialTooltips() {
+        const socialLinks = document.querySelectorAll('.social-link[data-tooltip]');
+        
+        socialLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.15) rotate(5deg)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    }
+
+    // Status indicator pulse effect
+    function initStatusIndicator() {
+        const statusDot = document.querySelector('.status-dot');
+        if (statusDot) {
+            let pulseCount = 0;
+            setInterval(() => {
+                if (pulseCount < 3) {
+                    statusDot.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        statusDot.style.transform = 'scale(1)';
+                    }, 200);
+                    pulseCount++;
+                } else {
+                    setTimeout(() => {
+                        pulseCount = 0;
+                    }, 3000);
+                }
+            }, 800);
+        }
+    }
+
+    // Hero stats counter animation
+    function initStatsCounter() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target;
+                    const finalValue = statNumber.textContent;
+                    
+                    // Extract numeric value
+                    const numericValue = parseFloat(finalValue);
+                    if (!isNaN(numericValue)) {
+                        let currentValue = 0;
+                        const increment = numericValue / 50;
+                        const isDecimal = finalValue.includes('.');
+                        
+                        const counter = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= numericValue) {
+                                statNumber.textContent = finalValue;
+                                clearInterval(counter);
+                            } else {
+                                const displayValue = isDecimal
+                                    ? currentValue.toFixed(1)
+                                    : Math.floor(currentValue);
+                                statNumber.textContent = displayValue + (finalValue.includes('+') ? '+' : '');
+                            }
+                        }, 40);
+                    }
+                    
+                    statsObserver.unobserve(statNumber);
+                }
+            });
+        }, { threshold: 0.8 });
+        
+        statNumbers.forEach(stat => statsObserver.observe(stat));
+    }
+
     // Initialize all enhanced effects
     initMagneticEffects();
     initAdvancedCardAnimations();
     initThemeSystem();
     initParallaxEffects();
+    initSkillTagAnimations();
+    initEnhancedTypingEffect();
+    initProjectCardEnhancements();
+    initSocialTooltips();
+    initStatusIndicator();
+    initStatsCounter();
 
     // Debug: Add a test for theme toggle
-    console.log('All systems initialized');
+    console.log('All enhanced systems initialized');
 });

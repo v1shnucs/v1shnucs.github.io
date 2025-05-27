@@ -33,6 +33,7 @@
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#education">Education</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#certifications">Certifications</a></li>
@@ -53,6 +54,7 @@
         <ul id="navMenu">
             <li><a href="#about">About</a></li>
             <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#certifications">Certifications</a></li>
@@ -67,23 +69,48 @@
             <div class="hero-content">
                 <div class="hero-image">
                     <img src="vishnu_final.jpg" alt="Vishnu Reshamwala">
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Available for opportunities</span>
+                    </div>
                 </div>
                 <h1 class="hero-name">Vishnu Reshamwala</h1>
                 <div class="subtitle">Software Engineer</div>
-                <div class="hero-actions">
-                    <a href="Vishnu_Reshamwala_resume.pdf" target="_blank" class="btn-primary resume-button">View Resume</a>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">3.9</span>
+                        <span class="stat-label">GPA</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">7+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4+</span>
+                        <span class="stat-label">Certifications</span>
+                    </div>
                 </div>
                 <p class="description">
                     I am a driven and detail-oriented software engineer with a passion for leveraging technology to solve real-world challenges. My expertise spans full-stack development, artificial intelligence, and machine learning, with a focus on creating scalable, user-centric solutions.
                 </p>
+                <div class="hero-actions">
+                    <a href="Vishnu_Reshamwala_resume.pdf" target="_blank" class="btn-primary resume-button">
+                        <i class="fas fa-download"></i>
+                        View Resume
+                    </a>
+                    <a href="#contact" class="btn-secondary contact-button">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
+                </div>
                 <div class="social-links">
-                    <a href="https://github.com/v1shnucs" target="_blank" class="social-link">
+                    <a href="https://github.com/v1shnucs" target="_blank" class="social-link" data-tooltip="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://linkedin.com/in/v1shnucs" target="_blank" class="social-link">
+                    <a href="https://linkedin.com/in/v1shnucs" target="_blank" class="social-link" data-tooltip="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="mailto:vishnu.reshamwala764@myci.csuci.edu" class="social-link">
+                    <a href="mailto:vishnu.reshamwala764@myci.csuci.edu" class="social-link" data-tooltip="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -111,25 +138,130 @@
             </div>
         </section>
 
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <div class="section-header">
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">Technologies and tools I work with</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-code category-icon"></i>
+                        <h3>Programming Languages</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">ROS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-tools category-icon"></i>
+                        <h3>Tools & Technologies</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Linux/Unix</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-globe category-icon"></i>
+                        <h3>Web & App Development</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">NestJS</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-brain category-icon"></i>
+                        <h3>Machine Learning & AI</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Scikit-Learn</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">CNN</span>
+                        <span class="skill-tag">ResNet</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">FAISS</span>
+                        <span class="skill-tag">LLaMa</span>
+                        <span class="skill-tag">HuggingFace</span>
+                        <span class="skill-tag">Amazon SageMaker</span>
+                        <span class="skill-tag">OpenAI API</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Projects Section -->
         <section class="section" id="projects">
             <div class="section-header">
                 <h2 class="section-title">Projects</h2>
             </div>
             <div class="projects-grid">
-                <div class="glass-card project-card">
-                    <h3>MS Capstone: Intelligent Human-Robot Interaction System</h3>
+                <div class="glass-card project-card featured-project">
+                    <div class="project-badge">MS Thesis</div>
+                    <div class="project-status">In Progress</div>
+                    <h3>Intelligent Human-Robot Interaction System</h3>
                     <div class="tech-stack">
                         <span class="tech-tag">ROS</span>
-                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">OpenAI GPT-4o</span>
                         <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Computer Vision</span>
                     </div>
                     <p class="project-description">
-                        Developing an advanced human-robot interaction system using Sawyer robot platform that combines OpenAI's Vision model for object detection and natural language processing for intuitive control.
+                        Developing an advanced human-robot interaction system using the Sawyer robot platform that combines computer vision for object detection and natural language processing for intuitive control. Leveraging OpenAI's GPT-4o vision model for real-time shape and color recognition from images, enabling more generalizable and robust visual understanding.
                     </p>
+                    <div class="project-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-eye"></i>
+                            <span>GPT-4o vision model for real-time shape & color recognition</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-robot"></i>
+                            <span>Sawyer robot platform integration</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-docker"></i>
+                            <span>Containerized ROS deployment architecture</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-language"></i>
+                            <span>Reproducible development environment</span>
+                        </div>
+                    </div>
                     <div class="project-links">
                         <a href="https://github.com/v1shnucs/SawyerSense" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View Project
+                            <i class="fab fa-github"></i> View Code
                         </a>
                     </div>
                 </div>
@@ -140,11 +272,30 @@
                         <span class="tech-tag">React.js</span>
                         <span class="tech-tag">NestJS</span>
                         <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">JWT</span>
+                        <span class="tech-tag">JWT Authentication</span>
+                        <span class="tech-tag">RESTful APIs</span>
                     </div>
                     <p class="project-description">
-                        Developed an innovative job recruitment platform that revolutionizes hiring with a swipe-based interface for seamless recruiter-job seeker matching.
+                        Developed an innovative job recruitment platform that revolutionizes hiring with a swipe-based interface for seamless recruiter-job seeker matching. Features secure authentication, instant messaging, and automated interview scheduling.
                     </p>
+                    <div class="project-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Swipe-based interface for intuitive matching</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure JWT authentication system</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-comments"></i>
+                            <span>Real-time instant messaging</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Automated interview scheduling</span>
+                        </div>
+                    </div>
                     <div class="project-links">
                         <a href="https://www.youtube.com/watch?v=FLxJQr2a47E&t=1s&ab_channel=soltantalks" target="_blank" class="project-link youtube-link">
                             <i class="fab fa-youtube"></i> Watch Demo
@@ -162,8 +313,26 @@
                         <span class="tech-tag">SerpApi</span>
                     </div>
                     <p class="project-description">
-                        Developed an AI-powered conversational shopping assistant enabling users to find products via natural language and image-based queries. Integrated Google Gemini for multimodal understanding and intelligent product recommendations, utilizing SerpApi for real-time product searching from Google Shopping.
+                        Developed "Bink," an AI-powered conversational shopping assistant enabling users to find products via natural language and image-based queries. Integrated Google Gemini for multimodal (text and image) query understanding, AI-driven search keyword generation, and intelligent product recommendations.
                     </p>
+                    <div class="project-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-brain"></i>
+                            <span>Multimodal text and image query understanding</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-search"></i>
+                            <span>AI-driven search keyword generation</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Real-time Google Shopping integration via SerpApi</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-recycle"></i>
+                            <span>Specialized modes for general and thrift items</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="glass-card project-card">
