@@ -87,7 +87,7 @@ body::before {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: 
+    background:
         radial-gradient(circle at 25% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 75% 25%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
         radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 60%),
@@ -104,7 +104,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
+    background:
         conic-gradient(from 0deg at 30% 70%, transparent 0deg, rgba(99, 102, 241, 0.03) 60deg, transparent 120deg),
         conic-gradient(from 180deg at 70% 30%, transparent 0deg, rgba(236, 72, 153, 0.03) 60deg, transparent 120deg),
         linear-gradient(45deg, transparent 40%, rgba(6, 182, 212, 0.02) 50%, transparent 60%);
@@ -120,7 +120,7 @@ body::after {
     width: 100%;
     height: 100%;
     opacity: 0.4;
-    background-image: 
+    background-image:
         radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 1px, transparent 1px),
         radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 1px, transparent 1px);
     background-size: 50px 50px, 80px 80px;
@@ -129,44 +129,135 @@ body::after {
     pointer-events: none;
 }
 
-@keyframes morphingBg {
-    0%, 100% { 
-        transform: scale(1) rotate(0deg) translate(0, 0);
-        opacity: 1;
-    }
-    25% { 
-        transform: scale(1.2) rotate(90deg) translate(-30px, -30px);
+/* Remove all other background layers */
+.aurora-layer,
+.quantum-field,
+.fractal-layer,
+.plasma-layer,
+.dna-helix,
+.starfield,
+.interactive-orbs {
+    display: none;
+}
+
+/* OPTIMIZED ANIMATION KEYFRAMES - PERFORMANCE FOCUSED */
+
+@keyframes cosmicFlow {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
         opacity: 0.8;
     }
-    50% { 
-        transform: scale(0.8) rotate(180deg) translate(30px, 30px);
-        opacity: 0.9;
+    50% {
+        transform: translate(20px, 15px) rotate(180deg);
+        opacity: 1;
     }
-    75% { 
-        transform: scale(1.1) rotate(270deg) translate(-20px, 20px);
+}
+
+@keyframes cosmicPulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.6; }
+}
+
+@keyframes energyFlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes waveShift {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+}
+
+@keyframes auroraFlow {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(15px, -10px);
+        opacity: 0.8;
+    }
+}
+
+@keyframes quantumShift {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(5px, -8px); }
+    50% { transform: translate(-3px, 10px); }
+    75% { transform: translate(-6px, -4px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes fractalSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes plasmaWave {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(10px, -15px);
         opacity: 0.7;
     }
 }
 
-@keyframes geometricRotate {
-    0% { 
-        transform: rotate(0deg) scale(1);
-        filter: hue-rotate(0deg);
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.3;
     }
-    50% { 
-        transform: rotate(180deg) scale(1.1);
-        filter: hue-rotate(180deg);
+    50% {
+        transform: translate(20px, -15px);
+        opacity: 0.5;
     }
-    100% { 
-        transform: rotate(360deg) scale(1);
-        filter: hue-rotate(360deg);
-    }
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
 }
 
 @keyframes meshMove {
     0%, 100% { transform: translate(0, 0) scale(1); }
     33% { transform: translate(-20px, -20px) scale(1.05); }
     66% { transform: translate(20px, 20px) scale(0.95); }
+}
+
+@keyframes morphingBg {
+    0%, 100% {
+        transform: scale(1) rotate(0deg) translate(0, 0);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1.2) rotate(90deg) translate(-30px, -30px);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(0.8) rotate(180deg) translate(30px, 30px);
+        opacity: 0.9;
+    }
+    75% {
+        transform: scale(1.1) rotate(270deg) translate(-20px, 20px);
+        opacity: 0.7;
+    }
+}
+
+@keyframes geometricRotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        filter: hue-rotate(360deg);
+    }
 }
 
 /* Advanced Floating particles */
@@ -226,7 +317,7 @@ body::after {
     }
 }
 
-/* Enhanced Header */
+/* Glass Effect Header - Matches Background */
 header {
     position: fixed;
     top: 0;
@@ -234,22 +325,18 @@ header {
     z-index: 2000;
     padding: 1rem 0;
     background: var(--glass);
-    backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     transition: var(--transition);
-    box-shadow: 
-        0 4px 20px rgba(0, 0, 0, 0.15),
-        0 0 40px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 header.scrolled {
     padding: 0.75rem 0;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.25),
-        0 0 60px rgba(99, 102, 241, 0.15);
+    background: var(--glass-hover);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .header-content {
@@ -456,10 +543,11 @@ main {
 }
 
 .hero-actions {
-    margin-top: 1.5rem; 
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     display: flex;
     justify-content: center;
+    gap: 2rem; /* Increased gap between buttons */
     opacity: 0;
     animation: fadeInUp 1s ease 1.2s forwards;
 }

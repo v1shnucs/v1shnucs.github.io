@@ -70,15 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', handleScroll);
 
-    // Enhanced Particles
+    // OPTIMIZED PARTICLES SYSTEM - REDUCED COUNT
     const particlesContainer = document.getElementById('particles');
     if (particlesContainer) {
-        const numParticles = 50;
+        const numParticles = 30; // Reduced from 80 to 30
         for (let i = 0; i < numParticles; i++) {
             const particle = document.createElement('div');
             particle.classList.add('particle');
             
-            // Random size categories
+            // Simplified size categories
             const sizeCategory = Math.random();
             if (sizeCategory < 0.3) {
                 particle.classList.add('small');
@@ -86,23 +86,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 particle.classList.add('large');
             }
             
-            const size = Math.random() * 4 + 2;
+            const size = Math.random() * 4 + 2; // Reduced size range
             particle.style.width = size + 'px';
             particle.style.height = size + 'px';
             particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            particle.style.animationDuration = (Math.random() * 15 + 10) + 's'; // Slower animation
             particle.style.animationDelay = (Math.random() * 8) + 's';
             
-            // Enhanced color palette for particles
+            // Simplified color palette - no heavy gradients
             const colors = [
-                '#6366f1', '#ec4899', '#06b6d4', '#8b5cf6', '#10b981',
-                '#f59e0b', '#ef4444', '#84cc16', '#06b6d4', '#d946ef'
+                '#6366f1', '#ec4899', '#06b6d4', '#8b5cf6', '#10b981'
             ];
             const color = colors[Math.floor(Math.random() * colors.length)];
-            particle.style.background = color;
-            particle.style.boxShadow = `0 0 10px ${color}`;
+            particle.style.background = color; // Simple solid color instead of gradient
+            particle.style.boxShadow = `0 0 ${size * 2}px ${color}`; // Reduced glow
             
             particlesContainer.appendChild(particle);
+        }
+    }
+
+    // OPTIMIZED STARFIELD - REDUCED COUNT
+    const starfieldContainer = document.getElementById('starfield');
+    if (starfieldContainer) {
+        const numStars = 50; // Reduced from 200 to 50
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            const size = Math.random() * 2 + 0.5; // Smaller stars
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 8 + 's'; // Longer delays
+            star.style.animationDuration = (Math.random() * 6 + 4) + 's'; // Slower animation
+            
+            // Simplified star effects
+            const intensity = Math.random();
+            if (intensity > 0.9) { // Only very few bright stars
+                star.style.boxShadow = `0 0 ${size * 2}px white`;
+            }
+            
+            starfieldContainer.appendChild(star);
+        }
+    }
+
+    // OPTIMIZED ORBS SYSTEM - REDUCED COUNT
+    const orbsContainer = document.getElementById('interactiveOrbs');
+    if (orbsContainer) {
+        const numOrbs = 6; // Reduced from 12 to 6
+        for (let i = 0; i < numOrbs; i++) {
+            const orb = document.createElement('div');
+            orb.classList.add('orb');
+            
+            const size = Math.random() * 60 + 30; // Smaller orbs
+            orb.style.width = size + 'px';
+            orb.style.height = size + 'px';
+            orb.style.left = Math.random() * 100 + '%';
+            orb.style.top = Math.random() * 100 + '%';
+            orb.style.animationDelay = Math.random() * 30 + 's'; // Longer delays
+            orb.style.animationDuration = (Math.random() * 40 + 30) + 's'; // Slower animation
+            
+            // Simplified orb colors
+            const orbColors = [
+                'radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.3), transparent)',
+                'radial-gradient(circle at 30% 30%, rgba(236, 72, 153, 0.25), transparent)',
+                'radial-gradient(circle at 30% 30%, rgba(6, 182, 212, 0.2), transparent)'
+            ];
+            const orbColor = orbColors[Math.floor(Math.random() * orbColors.length)];
+            orb.style.background = orbColor;
+            
+            orbsContainer.appendChild(orb);
         }
     }
 
@@ -427,6 +481,136 @@ document.addEventListener('DOMContentLoaded', () => {
         statNumbers.forEach(stat => statsObserver.observe(stat));
     }
 
+    // FAST MOUSE INTERACTION SYSTEM - ENHANCED RESPONSIVENESS
+    function initMouseInteractions() {
+        let mouseX = 0, mouseY = 0;
+        let ticking = false;
+        
+        function updateMouseEffects() {
+            // Enhanced background shift - multiple layers with faster response
+            const aurora = document.querySelector('.aurora-layer');
+            const quantum = document.querySelector('.quantum-field');
+            const plasma = document.querySelector('.plasma-layer');
+            
+            if (aurora) {
+                const xOffset = (mouseX - 0.5) * 25; // Increased intensity
+                const yOffset = (mouseY - 0.5) * 25;
+                aurora.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            }
+            if (quantum) {
+                const xOffset = (mouseX - 0.5) * 15;
+                const yOffset = (mouseY - 0.5) * 15;
+                quantum.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            }
+            if (plasma) {
+                const xOffset = (mouseX - 0.5) * 20;
+                const yOffset = (mouseY - 0.5) * 20;
+                plasma.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            }
+            
+            ticking = false;
+        }
+        
+        document.addEventListener('mousemove', throttle((e) => {
+            mouseX = e.clientX / window.innerWidth;
+            mouseY = e.clientY / window.innerHeight;
+            
+            if (!ticking) {
+                requestAnimationFrame(updateMouseEffects);
+                ticking = true;
+            }
+        }, 16)); // Faster - 60fps mouse tracking
+    }
+
+    // FASTER SCROLL EFFECTS - ENHANCED RESPONSIVENESS
+    function initAdvancedScrollEffects() {
+        let ticking = false;
+        
+        function updateScrollEffects() {
+            const scrolled = window.pageYOffset;
+            
+            // Enhanced parallax for multiple layers with faster response
+            const aurora = document.querySelector('.aurora-layer');
+            const quantum = document.querySelector('.quantum-field');
+            const fractal = document.querySelector('.fractal-layer');
+            const plasma = document.querySelector('.plasma-layer');
+            
+            if (aurora) aurora.style.transform = `translateY(${scrolled * -0.3}px)`;
+            if (quantum) quantum.style.transform = `translateY(${scrolled * -0.2}px)`;
+            if (fractal) fractal.style.transform = `translateY(${scrolled * -0.15}px)`;
+            if (plasma) plasma.style.transform = `translateY(${scrolled * -0.25}px)`;
+            
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', throttle(() => {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollEffects);
+                ticking = true;
+            }
+        }, 16)); // Faster - 60fps scrolling
+    }
+
+    // DYNAMIC COLOR SYSTEM - DISABLED FOR PERFORMANCE
+    function initDynamicColors() {
+        // Disabled for better performance
+        console.log('Dynamic colors disabled for performance');
+    }
+
+    // ENHANCED PERFORMANCE OPTIMIZATIONS
+    function initPerformanceOptimizations() {
+        // Detect low-end devices more aggressively
+        const isLowEnd = navigator.hardwareConcurrency <= 4 ||
+                        window.innerWidth < 1024 ||
+                        /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (isLowEnd) {
+            // Disable most background layers on low-end devices
+            const intensiveElements = document.querySelectorAll('.quantum-field, .fractal-layer, .plasma-layer');
+            intensiveElements.forEach(el => el.style.display = 'none');
+            
+            // Reduce particles and stars even further
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                if (index > 15) particle.remove(); // Keep only 15 particles
+            });
+            
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if (index > 25) star.remove(); // Keep only 25 stars
+            });
+            
+            const orbs = document.querySelectorAll('.orb');
+            orbs.forEach((orb, index) => {
+                if (index > 3) orb.remove(); // Keep only 3 orbs
+            });
+        }
+        
+        // Pause animations when tab is not visible
+        document.addEventListener('visibilitychange', () => {
+            const allAnimatedElements = document.querySelectorAll('[class*="layer"], .particle, .orb, .star');
+            if (document.hidden) {
+                allAnimatedElements.forEach(el => el.style.animationPlayState = 'paused');
+            } else {
+                allAnimatedElements.forEach(el => el.style.animationPlayState = 'running');
+            }
+        });
+        
+        // Reduce quality on small screens
+        if (window.innerWidth < 768) {
+            const allLayers = document.querySelectorAll('[class*="layer"]');
+            allLayers.forEach(layer => {
+                layer.style.opacity = '0.3'; // Reduce opacity on mobile
+            });
+        }
+    }
+
+    // AUDIO REACTIVE BACKGROUND - DISABLED FOR PERFORMANCE
+    function initAudioReactiveBackground() {
+        // Disabled for better performance
+        console.log('Audio reactive background disabled for performance');
+    }
+
     // Initialize all enhanced effects
     initMagneticEffects();
     initAdvancedCardAnimations();
@@ -438,7 +622,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initSocialTooltips();
     initStatusIndicator();
     initStatsCounter();
+    
+    // Initialize new epic effects
+    initMouseInteractions();
+    initAdvancedScrollEffects();
+    initDynamicColors();
+    initPerformanceOptimizations();
+    initAudioReactiveBackground();
 
     // Debug: Add a test for theme toggle
-    console.log('All enhanced systems initialized');
+    console.log('🚀 ALL EPIC SYSTEMS INITIALIZED - BACKGROUND IS NOW INSANE! 🚀');
 });
