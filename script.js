@@ -160,44 +160,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Enhanced Section Scroll Animations with staggered effect
+    // Scroll animations disabled - sections are immediately visible
     const sections = document.querySelectorAll('.section');
-    const observerOptions = {
-        root: null,
-        rootMargin: '-50px',
-        threshold: 0.2
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                entry.target.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                
-                // Staggered animation for child elements
-                const cards = entry.target.querySelectorAll('.glass-card, .cert-item, .contact-item');
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    }, index * 150);
-                });
-            }
-        });
-    }, observerOptions);
-
     sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(50px)';
-        observer.observe(section);
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
         
-        // Initially hide cards for staggered effect
+        // Make all cards immediately visible
         const cards = section.querySelectorAll('.glass-card, .cert-item, .contact-item');
         cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
         });
     });
 
@@ -271,31 +244,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Advanced Card Reveal Animation
+    // Card animations disabled - cards are immediately visible
     function initAdvancedCardAnimations() {
         const cards = document.querySelectorAll('.glass-card, .project-card');
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0) scale(1)';
-                        entry.target.style.filter = 'blur(0)';
-                    }, index * 150); // Staggered animation
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '50px'
-        });
-
         cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(50px) scale(0.95)';
-            card.style.filter = 'blur(5px)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
+            card.style.filter = 'blur(0)';
             card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            observer.observe(card);
         });
     }
 
@@ -333,36 +290,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Enhanced skill tag animations
+    // Skill tag animations disabled - tags are immediately visible
     function initSkillTagAnimations() {
         const skillCategories = document.querySelectorAll('.skill-category');
-        
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillTags = entry.target.querySelectorAll('.skill-tag');
-                    skillTags.forEach((tag, index) => {
-                        setTimeout(() => {
-                            tag.style.opacity = '1';
-                            tag.style.transform = 'translateY(0)';
-                        }, index * 80);
-                    });
-                    skillObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.3,
-            rootMargin: '0px 0px -50px 0px'
-        });
         
         skillCategories.forEach(category => {
             const skillTags = category.querySelectorAll('.skill-tag');
             skillTags.forEach(tag => {
-                tag.style.opacity = '0';
-                tag.style.transform = 'translateY(20px)';
+                tag.style.opacity = '1';
+                tag.style.transform = 'translateY(0)';
                 tag.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             });
-            skillObserver.observe(category);
         });
     }
 
