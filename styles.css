@@ -1239,6 +1239,7 @@ main {
 .project-links {
     display: flex;
     gap: 1rem;
+    margin-bottom: 1.5rem; /* Add space below the buttons */
 }
 
 .project-link {
