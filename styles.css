@@ -9,9 +9,9 @@
     --bg-dark: #0f0f23;
     --bg-light: #1a1a2e;
     --bg-card: rgba(255, 255, 255, 0.03);
-    --glass: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-hover: rgba(255, 255, 255, 0.08);
+    --glass: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-hover: rgba(255, 255, 255, 0.15);
     --text-primary: #ffffff;
     --text-secondary: #a1a1aa;
     --text-muted: #6b7280;
@@ -326,7 +326,7 @@ header {
     z-index: 2000;
     padding: 1rem 0;
     background: var(--glass);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(30px) saturate(1.2);
     border-bottom: 1px solid var(--glass-border);
     transition: var(--transition);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -335,7 +335,7 @@ header {
 header.scrolled {
     padding: 0.75rem 0;
     background: var(--glass-hover);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(30px) saturate(1.2);
     border-bottom: 1px solid var(--glass-border);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
@@ -660,7 +660,7 @@ main {
     align-items: center;
     gap: 0.5rem;
     background: var(--glass);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px) saturate(1.1);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
@@ -698,7 +698,7 @@ main {
     background: var(--glass);
     border: 1px solid var(--glass-border);
     border-radius: 15px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px) saturate(1.1);
     transition: var(--transition);
 }
 
@@ -753,7 +753,7 @@ main {
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 2rem;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(25px) saturate(1.2);
     transition: var(--transition);
 }
 
@@ -789,15 +789,14 @@ main {
 }
 
 .skill-tag {
-    background: var(--glass);
+    background: rgba(99, 102, 241, 0.1); /* Using a colored, darker glass effect */
     color: var(--text-primary);
     padding: 0.6rem 1.2rem;
     border-radius: var(--border-radius-sm);
     font-size: 0.9rem;
     font-weight: 500;
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(99, 102, 241, 0.2); /* Matching border */
     transition: var(--transition-fast);
-    backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
 }
@@ -816,8 +815,8 @@ main {
 
 .skill-tag:hover {
     transform: translateY(-2px);
-    background: var(--glass-hover);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(99, 102, 241, 0.2); /* Darken on hover */
+    border-color: rgba(99, 102, 241, 0.4);
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
 }
 
@@ -978,7 +977,7 @@ main {
     font-size: 1rem;
     transition: var(--transition);
     cursor: pointer;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px) saturate(1.1);
 }
 
 .btn-secondary:hover {
@@ -1028,7 +1027,7 @@ main {
 /* Glass Cards */
 .glass-card {
     background: var(--glass);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(25px) saturate(1.2);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 2rem;
@@ -1072,18 +1071,6 @@ main {
 
 .education-card {
     position: relative;
-    padding-left: calc(2rem + 4px);
-}
-
-.education-card::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--gradient-3);
-    border-radius: 2px;
 }
 
 .education-card h3 {
@@ -1498,7 +1485,7 @@ main {
         left: 0;
         width: 100%;
         background: var(--glass);
-        backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(30px) saturate(180%);
         border-top: 1px solid var(--glass-border);
         border-bottom: 1px solid var(--glass-border);
         flex-direction: column;

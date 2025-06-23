@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // OPTIMIZED PARTICLES SYSTEM - REDUCED COUNT
     const particlesContainer = document.getElementById('particles');
     if (particlesContainer) {
-        const numParticles = 30; // Reduced from 80 to 30
+        const numParticles = 80;
         for (let i = 0; i < numParticles; i++) {
             const particle = document.createElement('div');
             particle.classList.add('particle');
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // OPTIMIZED STARFIELD - REDUCED COUNT
     const starfieldContainer = document.getElementById('starfield');
     if (starfieldContainer) {
-        const numStars = 50; // Reduced from 200 to 50
+        const numStars = 200;
         for (let i = 0; i < numStars; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // OPTIMIZED ORBS SYSTEM - REDUCED COUNT
     const orbsContainer = document.getElementById('interactiveOrbs');
     if (orbsContainer) {
-        const numOrbs = 6; // Reduced from 12 to 6
+        const numOrbs = 12;
         for (let i = 0; i < numOrbs; i++) {
             const orb = document.createElement('div');
             orb.classList.add('orb');
@@ -502,27 +502,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.innerWidth < 1024 ||
                         /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
-        if (isLowEnd) {
-            // Disable most background layers on low-end devices
-            const intensiveElements = document.querySelectorAll('.quantum-field, .fractal-layer, .plasma-layer');
-            intensiveElements.forEach(el => el.style.display = 'none');
+        // if (isLowEnd) {
+        //     // Disable most background layers on low-end devices
+        //     const intensiveElements = document.querySelectorAll('.quantum-field, .fractal-layer, .plasma-layer');
+        //     intensiveElements.forEach(el => el.style.display = 'none');
             
-            // Reduce particles and stars even further
-            const particles = document.querySelectorAll('.particle');
-            particles.forEach((particle, index) => {
-                if (index > 15) particle.remove(); // Keep only 15 particles
-            });
+        //     // Reduce particles and stars even further
+        //     const particles = document.querySelectorAll('.particle');
+        //     particles.forEach((particle, index) => {
+        //         if (index > 15) particle.remove(); // Keep only 15 particles
+        //     });
             
-            const stars = document.querySelectorAll('.star');
-            stars.forEach((star, index) => {
-                if (index > 25) star.remove(); // Keep only 25 stars
-            });
+        //     const stars = document.querySelectorAll('.star');
+        //     stars.forEach((star, index) => {
+        //         if (index > 25) star.remove(); // Keep only 25 stars
+        //     });
             
-            const orbs = document.querySelectorAll('.orb');
-            orbs.forEach((orb, index) => {
-                if (index > 3) orb.remove(); // Keep only 3 orbs
-            });
-        }
+        //     const orbs = document.querySelectorAll('.orb');
+        //     orbs.forEach((orb, index) => {
+        //         if (index > 3) orb.remove(); // Keep only 3 orbs
+        //     });
+        // }
         
         // Pause animations when tab is not visible
         document.addEventListener('visibilitychange', () => {
