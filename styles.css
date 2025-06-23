@@ -1665,6 +1665,19 @@ main {
     .highlight-item {
         gap: 0.75rem;
     }
+
+    /* Performance optimizations for mobile */
+    body::before,
+    body::after,
+    .bg-mesh,
+    .particles {
+        animation: none;
+        display: none;
+    }
+
+    .grid-overlay {
+        animation: none;
+    }
 }
 
 @media (max-width: 480px) {
