@@ -1254,6 +1254,26 @@ main {
     font-weight: 600;
     transition: var(--transition);
     font-size: 0.9rem;
+.project-link {
+    animation: projectPulse 1.2s infinite cubic-bezier(0.4, 0, 0.6, 1) !important;
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7) !important;
+    position: relative;
+    z-index: 2;
+}
+@keyframes projectPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+    }
+    60% {
+        transform: scale(1.12);
+        box-shadow: 0 0 0 18px rgba(99, 102, 241, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+    }
+}
 }
 
 .project-link:hover {
@@ -1854,4 +1874,38 @@ button:focus-visible {
     .grid-overlay {
         animation: none !important;
     }
+}
+.pulse {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+.pulse::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 108%;
+  height: 108%;
+  transform: translate(-50%, -50%) scale(1);
+  border-radius: 30px;
+  background: rgba(99,102,241,0.25);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: -1;
+  animation: ripplePulse 1.4s infinite;
+}
+@keyframes ripplePulse {
+  0% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2);
+  }
 }
