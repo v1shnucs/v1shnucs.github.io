@@ -90,8 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
             particle.style.width = size + 'px';
             particle.style.height = size + 'px';
             particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.animationDuration = (Math.random() * 15 + 10) + 's'; // Slower animation
-            particle.style.animationDelay = (Math.random() * 8) + 's';
+            particle.style.top = Math.random() * 100 + 'vh'; // Randomize vertical position too
+            particle.style.animationDuration = (Math.random() * 20 + 10) + 's'; // Slower animation
+            particle.style.animationDelay = (Math.random() * 5) + 's';
             
             // Simplified color palette - no heavy gradients
             const colors = [

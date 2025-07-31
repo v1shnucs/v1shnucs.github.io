@@ -296,25 +296,21 @@ body::after {
 }
 
 @keyframes float {
-    0% {
-        transform: translateY(110vh) translateX(0) rotate(0deg) scale(0);
-        opacity: 0;
-    }
-    5% {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
         opacity: 0.7;
-        transform: translateY(100vh) translateX(0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translate(-25px, -15px) rotate(10deg) scale(1.1);
+        opacity: 0.9;
     }
     50% {
-        transform: translateY(50vh) translateX(50px) rotate(180deg) scale(1.2);
+        transform: translate(20px, -20px) rotate(-10deg) scale(0.9);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translate(15px, 25px) rotate(5deg) scale(1.05);
         opacity: 1;
-    }
-    95% {
-        opacity: 0.7;
-        transform: translateY(-5vh) translateX(-30px) rotate(350deg) scale(0.8);
-    }
-    100% {
-        transform: translateY(-10vh) translateX(0) rotate(360deg) scale(0);
-        opacity: 0;
     }
 }
 
@@ -441,13 +437,13 @@ nav a:hover {
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 8rem 2rem 2rem;
+    padding: 2rem;
 }
 
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 0 0 6rem;
+    padding: 4rem 0 6rem;
     position: relative;
 }
 
@@ -506,7 +502,7 @@ main {
 }
 
 .hero h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 900;
     margin-bottom: 0rem;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
@@ -519,6 +515,80 @@ main {
 @keyframes textGlow {
     0% { filter: brightness(1) saturate(1); }
     100% { filter: brightness(1.2) saturate(1.3); }
+}
+
+/* Infinite Skills Slider */
+.skills-slider-container {
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+}
+
+.skills-slider {
+    display: flex;
+    animation: slide 80s linear infinite;
+    width: max-content;
+    gap: 1rem;
+    will-change: transform;
+}
+
+.skill-tag-slider {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--text-primary);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    margin: 0 0.5rem;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.skill-tag-slider:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.skills-slider-container::before,
+.skills-slider-container::after {
+    display: none;
+}
+
+/* Responsive adjustments for skills slider */
+@media (max-width: 768px) {
+    .skills-slider-container {
+        max-width: 100%;
+        margin: 1.5rem auto;
+    }
+    
+    .skills-slider {
+        animation-duration: 20s;
+    }
+    
+    .skill-tag-slider {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        margin: 0 0.3rem;
+    }
+    
+    .skills-slider-container::before,
+    .skills-slider-container::after {
+        width: 50px;
+    }
 }
 
 .hero .subtitle {
@@ -540,8 +610,8 @@ main {
 }
 
 .hero-name {
-    font-size: 3rem;
-    font-weight: 900;
+    font-size: 1.2rem;
+    font-weight: 700;
     margin-bottom: 0.25rem;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     -webkit-background-clip: text;
