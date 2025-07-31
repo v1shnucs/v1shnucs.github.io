@@ -41,6 +41,38 @@ body.light-mode {
     --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.2);
 }
 
+/* Pure Black Theme Variables */
+body.black-theme {
+    --bg-dark: #000000;
+    --bg-light: #000000;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-hover: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --text-muted: #6b7280;
+    --shadow-glow: 0 0 40px rgba(255, 255, 255, 0.3);
+    --shadow-card: 0 8px 32px rgba(255, 255, 255, 0.1);
+    --shadow-elevated: 0 20px 40px rgba(255, 255, 255, 0.2);
+}
+
+/* Pure Light Theme Variables */
+body.light-theme {
+    --bg-dark: #ffffff;
+    --bg-light: #f8fafc;
+    --bg-card: rgba(0, 0, 0, 0.03);
+    --glass: rgba(0, 0, 0, 0.05);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-hover: rgba(0, 0, 0, 0.1);
+    --text-primary: #000000;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --shadow-glow: 0 0 40px rgba(0, 0, 0, 0.1);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-elevated: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -139,6 +171,31 @@ body::after {
 .starfield,
 .interactive-orbs {
     display: none;
+}
+
+/* Theme-specific background adjustments */
+body.black-theme .grid-overlay {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+body.light-theme .grid-overlay {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+body.black-theme .bg-mesh {
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+body.light-theme .bg-mesh {
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
 }
 
 /* OPTIMIZED ANIMATION KEYFRAMES - PERFORMANCE FOCUSED */
@@ -1608,7 +1665,8 @@ main {
         text-align: center;
     }
     
-    .mobile-nav a {
+    .mobile-nav a,
+    .mobile-nav .theme-switcher {
         display: block;
         width: 100%;
         padding: 1rem;
@@ -1620,6 +1678,20 @@ main {
         transition: all 0.3s ease;
         color: var(--text-primary);
         text-decoration: none;
+    }
+    
+    .mobile-nav .theme-switcher {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        margin: 0.25rem 0;
+        border-radius: 12px;
+    }
+    
+    .mobile-nav .theme-switcher i {
+        margin-right: 0.5rem;
     }
 
     .mobile-nav a:hover {
@@ -1978,4 +2050,198 @@ button:focus-visible {
     opacity: 0;
     transform: translate(-50%, -50%) scale(2);
   }
+}
+
+/* Theme-specific particle styles */
+body.black-theme .particle {
+    background: #ffffff !important;
+    box-shadow: 0 0 4px #ffffff !important;
+}
+
+body.light-theme .particle {
+    background: #000000 !important;
+    box-shadow: 0 0 4px #000000 !important;
+}
+
+/* Theme transition */
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Adjust gradients for light theme */
+body.light-theme .logo,
+body.light-theme .hero h1,
+body.light-theme .hero-name,
+body.light-theme .section-title,
+body.light-theme .project-card h3,
+body.light-theme .stat-number,
+body.light-theme .grade {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* Certificate links styling */
+.cert-item {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.cert-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.cert-item:hover .cert-icon {
+    transform: scale(1.1);
+}
+
+.cert-item .cert-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Theme-specific certificate hover effects */
+body.light-theme .cert-item:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+body.black-theme .cert-item:hover {
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile responsiveness for theme switcher */
+@media (max-width: 768px) {
+    .theme-switcher {
+        width: 40px;
+        height: 40px;
+        margin-left: 0.5rem;
+    }
+    
+    .theme-switcher i {
+        font-size: 1rem;
+    }
+    
+    .theme-switcher::after {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .theme-switcher {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .theme-switcher i {
+        font-size: 0.9rem;
+    }
+}
+
+/* Theme Switcher Button */
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-left: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.theme-switcher:hover {
+    background: var(--glass-hover);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.theme-switcher:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.theme-switcher i {
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+/* Theme Switcher Glow Effect */
+.theme-switcher::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.theme-switcher:hover::before {
+    left: 100%;
+}
+
+/* Theme Indicator */
+.theme-indicator {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.theme-switcher.active .theme-indicator {
+    opacity: 1;
+}
+
+/* Theme Switcher Tooltip */
+.theme-switcher::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.theme-switcher:hover::after {
+    opacity: 1;
+}
+
+/* Theme Switcher Animation */
+@keyframes themeSwitch {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(90deg) scale(1.1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    75% { transform: rotate(270deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.theme-switcher.switching {
+    animation: themeSwitch 0.5s ease-in-out;
 }

@@ -70,41 +70,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', handleScroll);
 
-    // OPTIMIZED PARTICLES SYSTEM - REDUCED COUNT
-    const particlesContainer = document.getElementById('particles');
-    if (particlesContainer) {
-        const numParticles = 80;
-        for (let i = 0; i < numParticles; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
+    // Initialize particles based on theme
+    function initializeParticles() {
+        const particlesContainer = document.getElementById('particles');
+        if (particlesContainer) {
+            // Clear existing particles
+            particlesContainer.innerHTML = '';
             
-            // Simplified size categories
-            const sizeCategory = Math.random();
-            if (sizeCategory < 0.3) {
-                particle.classList.add('small');
-            } else if (sizeCategory > 0.7) {
-                particle.classList.add('large');
+            // Get current theme
+            const currentTheme = document.body.classList.contains('black-theme') ? 'black-theme' :
+                                document.body.classList.contains('light-theme') ? 'light-theme' : 'epic-dark';
+            
+            let numParticles, colors;
+            
+            // Set particle properties based on theme
+            if (currentTheme === 'black-theme') {
+                numParticles = 100;
+                colors = ['#ffffff'];
+            } else if (currentTheme === 'light-theme') {
+                numParticles = 100;
+                colors = ['#000000'];
+            } else {
+                // Default to original epic dark theme particles
+                numParticles = 80;
+                colors = ['#6366f1', '#ec4899', '#06b6d4', '#8b5cf6', '#10b981'];
             }
             
-            const size = Math.random() * 4 + 2; // Reduced size range
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.top = Math.random() * 100 + 'vh'; // Randomize vertical position too
-            particle.style.animationDuration = (Math.random() * 20 + 10) + 's'; // Slower animation
-            particle.style.animationDelay = (Math.random() * 5) + 's';
-            
-            // Simplified color palette - no heavy gradients
-            const colors = [
-                '#6366f1', '#ec4899', '#06b6d4', '#8b5cf6', '#10b981'
-            ];
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            particle.style.background = color; // Simple solid color instead of gradient
-            particle.style.boxShadow = `0 0 ${size * 2}px ${color}`; // Reduced glow
-            
-            particlesContainer.appendChild(particle);
+            // Create particles
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Simplified size categories
+                const sizeCategory = Math.random();
+                if (sizeCategory < 0.3) {
+                    particle.classList.add('small');
+                } else if (sizeCategory > 0.7) {
+                    particle.classList.add('large');
+                }
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+                
+                // Set color based on theme
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                
+                // Set glow based on theme
+                particle.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+                
+                particlesContainer.appendChild(particle);
+            }
         }
     }
+    
+    // Initialize particles
+    initializeParticles();
 
     // OPTIMIZED STARFIELD - REDUCED COUNT
     const starfieldContainer = document.getElementById('starfield');
@@ -571,4 +597,97 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Debug: Add a test for theme toggle
     console.log('🚀 ALL EPIC SYSTEMS INITIALIZED - BACKGROUND IS NOW INSANE! 🚀');
+
+    // Theme Switcher System
+    function initThemeSwitcher() {
+        const themeSwitcher = document.getElementById('themeSwitcher');
+        const mobileThemeSwitcher = document.querySelector('.mobile-nav .theme-switcher');
+        const themeSwitchers = [themeSwitcher, mobileThemeSwitcher];
+        
+        // Get saved theme from localStorage or default to 'epic-dark'
+        let currentTheme = localStorage.getItem('selectedTheme') || 'epic-dark';
+        
+        // Apply saved theme
+        applyTheme(currentTheme);
+        
+        // Set active state on theme switcher buttons
+        updateThemeSwitcherUI(currentTheme);
+        
+        // Add event listeners to both theme switchers
+        themeSwitchers.forEach(switcher => {
+            if (switcher) {
+                switcher.addEventListener('click', () => {
+                    cycleTheme();
+                });
+            }
+        });
+        
+        // Function to cycle through themes
+        function cycleTheme() {
+            // Add switching animation
+            themeSwitchers.forEach(switcher => {
+                if (switcher) {
+                    switcher.classList.add('switching');
+                    setTimeout(() => {
+                        switcher.classList.remove('switching');
+                    }, 500);
+                }
+            });
+            
+            // Cycle through themes
+            if (currentTheme === 'epic-dark') {
+                currentTheme = 'black-theme';
+            } else if (currentTheme === 'black-theme') {
+                currentTheme = 'light-theme';
+            } else {
+                currentTheme = 'epic-dark';
+            }
+            
+            // Apply new theme
+            applyTheme(currentTheme);
+            updateThemeSwitcherUI(currentTheme);
+            
+            // Save theme to localStorage
+            localStorage.setItem('selectedTheme', currentTheme);
+        }
+        
+        // Function to apply theme
+        function applyTheme(theme) {
+            // Remove all theme classes
+            document.body.classList.remove('epic-dark', 'black-theme', 'light-theme');
+            
+            // Add selected theme class
+            if (theme !== 'epic-dark') {
+                document.body.classList.add(theme);
+            }
+            
+            // Update theme switcher icon based on theme
+            const icons = document.querySelectorAll('.theme-switcher i');
+            icons.forEach(icon => {
+                if (theme === 'epic-dark') {
+                    icon.className = 'fas fa-moon';
+                } else if (theme === 'black-theme') {
+                    icon.className = 'fas fa-circle';
+                } else {
+                    icon.className = 'fas fa-sun';
+                }
+            });
+            
+            // Reinitialize particles for the new theme
+            initializeParticles();
+        }
+        
+        // Function to update theme switcher UI
+        function updateThemeSwitcherUI(theme) {
+            themeSwitchers.forEach(switcher => {
+                if (switcher) {
+                    switcher.classList.remove('active');
+                    // We'll keep the indicator simple for now
+                }
+            });
+        }
+    }
+    
+    // Initialize theme switcher after DOM content is loaded
+    initThemeSwitcher();
 });
